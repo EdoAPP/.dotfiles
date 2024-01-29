@@ -14,7 +14,7 @@ return {
 
 
   -- NOTE: This is where your plugins related to LSP can be installed.
-   --  The configuration is done below. Search for lspconfig to find it below.
+  --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -25,7 +25,7 @@ return {
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -33,14 +33,14 @@ return {
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'sainnhe/everforest',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+      vim.cmd.colorscheme 'everforest';
+      vim.cmd "let g:everforest_background = 'hard'"
+    end
   },
   {
     -- Set lualine as statusline
