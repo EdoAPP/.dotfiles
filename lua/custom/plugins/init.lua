@@ -6,7 +6,13 @@ return {
 
   -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    config = function()
+      vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "open [g]it [s]tatus" })
+    end
+  },
+  -- TODO: github package that I Don't know how it works
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
@@ -38,8 +44,8 @@ return {
     'sainnhe/everforest',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'everforest';
-      vim.cmd "let g:everforest_background = 'hard'"
+      vim.cmd "let g:everforest_background = 'medium'";
+      vim.cmd "colorscheme everforest";
     end
   },
   {
@@ -48,8 +54,8 @@ return {
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'onedark',
+        icons_enabled = true,
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
       },

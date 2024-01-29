@@ -43,3 +43,5 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.api.nvim_set_hl(0, "Normal", { bg = 'none' })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = 'none' })
