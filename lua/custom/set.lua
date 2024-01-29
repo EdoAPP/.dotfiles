@@ -1,10 +1,22 @@
-
+--
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- Set <space> as the leader key
+--
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+
+-- [[ Basic Keymaps ]]
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- Set highlight on search
 vim.o.hlsearch = false
+
+vim.o.incsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
@@ -34,7 +46,7 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 25
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
@@ -43,5 +55,4 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.api.nvim_set_hl(0, "Normal", { bg = 'none' })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = 'none' })
+vim.opt.scrolloff = 8

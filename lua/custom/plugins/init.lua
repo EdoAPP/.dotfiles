@@ -18,7 +18,7 @@ return {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-
+  { 'mhartington/formatter.nvim' },
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -39,7 +39,7 @@ return {
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim',      opts = {} },
   {
     'sainnhe/everforest',
     priority = 1000,
@@ -77,5 +77,5 @@ return {
     config = function()
       vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle)
     end
-  }
+  },
 }
