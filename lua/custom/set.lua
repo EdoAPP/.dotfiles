@@ -13,6 +13,14 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- required so that nvim-tree is more performant
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- NOTE: You should make sure your terminal supports this
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -51,8 +59,5 @@ vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
 
 vim.opt.scrolloff = 8

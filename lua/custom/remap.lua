@@ -1,6 +1,5 @@
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set("n", "<leader>b", vim.cmd.Ex);
 vim.keymap.set("n", "<leader>w", vim.cmd.w);
 vim.keymap.set("n", "<leader>q", vim.cmd.q);
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -27,3 +26,7 @@ vim.keymap.set('n', 'gH', vim.diagnostic.setloclist, { desc = 'Open diagnostics 
 
 vim.keymap.set("n", "<leader>sar", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = '[S]earch [a]ll current file and [R]eplace' });
+
+vim.keymap.set("n", "<leader>bd", ":bd<Enter>", { desc = "[B]uffer [D]elete"} );
+vim.keymap.set("n", "<leader>b", ":NvimTreeToggle<CR>");
+
