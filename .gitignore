@@ -2,8 +2,10 @@ nvim-backup
 yarn
 zed
 raycast
-zsh/.zcompdump
 zsh/.zsh_history
+zsh/.zcompdump*
+zsh/ohmyzsh
+
 .vim/bundle
 log
 tags*
