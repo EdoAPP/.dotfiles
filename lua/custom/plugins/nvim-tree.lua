@@ -21,16 +21,12 @@ local config = {
             return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
         end
 
-
-        -- Mappings migrated from view.mappings.list
-        --
         -- You will need to insert "your code goes here" for any mappings with a custom action_cb
         vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
-        vim.keymap.set('n', 'L', api.node.open.vertical, opts('Open: Vertical Split'))
-
+        vim.keymap.set('n', 'V', api.node.open.vertical, opts('Open: Vertical Split'))
         vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
         vim.keymap.set('n', 'H', api.tree.collapse_all, opts('Collapse'))
-        vim.keymap.set('n', 't', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
+        vim.keymap.set('n', 'n', api.fs.create, opts('Toggle Git Ignore'))
 
     end
 }
@@ -48,5 +44,6 @@ return {
         -- vim.cmd([[
         --     autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
         -- ]])
+        --
     end
 }
