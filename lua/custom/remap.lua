@@ -4,9 +4,14 @@ vim.keymap.set("n", "<D-s>", vim.cmd.w);
 vim.keymap.set("n", "<leader>q", vim.cmd.q);
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- moves the current line to up and down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+
 vim.keymap.set("n", "<D-b>", ":NvimTreeToggle<CR>", { silent = true, noremap = true });
+
+-- copies the entire file to registry
+vim.keymap.set("n", "<D-a>", "VggoGy");
 
 -- Makes sure that the cursor stays in the middle when searching /
 vim.keymap.set("n", "n", "nzzzv")
