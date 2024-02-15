@@ -14,8 +14,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- required so that nvim-tree is more performant
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- NOTE: You should make sure your terminal supports this
 -- optionally enable 24-bit colour
