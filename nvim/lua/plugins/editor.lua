@@ -14,7 +14,4 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
-  {
-    "mg979/vim-visual-multi",
-  },
 }
