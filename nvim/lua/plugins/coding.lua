@@ -34,7 +34,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     opts = {
-      suggestion = { enabled = true, auto_trigger = true, keymap = { accept = "<C-y>" } },
+      suggestion = { enabled = true, auto_trigger = true, keymap = { accept = "<C-a>" } },
       panel = {
         enabled = true,
         auto_refresh = false,
@@ -55,5 +55,11 @@ return {
         help = true,
       },
     },
+  },
+  {
+    "mbbill/undotree",
+    config = function()
+      vim.keymap.set("n", "<leader>sut", vim.cmd.UndotreeToggle, { desc = "Show Undo Tree" })
+    end,
   },
 }
