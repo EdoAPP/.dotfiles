@@ -1,6 +1,7 @@
 nvim-backup
 yarn
 zed
+raycast
 zsh/.zsh_history
 zsh/.zcompdump*
 zsh/ohmyzsh
