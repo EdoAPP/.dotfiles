@@ -1,4 +1,3 @@
-nvim-backup
 yarn
 zed
 raycast
@@ -17,3 +16,5 @@ nvim/tags
 nvim/test.sh
 nvim/.luarc.json
 nvim/nvim
+nvim.bak
+nvim-backup
