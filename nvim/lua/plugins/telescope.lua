@@ -6,4 +6,7 @@ return {
       file_ignore_patterns = { ".git/", "node_modules", ".yarn/" },
     },
   },
+  keys = {
+    { "<leader><space>", require("telescope.builtin").find_files, desc = "Find Files (Root Dir)" },
+  },
 }
