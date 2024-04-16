@@ -62,4 +62,10 @@ return {
       vim.keymap.set("n", "<leader>sut", vim.cmd.UndotreeToggle, { desc = "Show Undo Tree" })
     end,
   },
+  {
+    "mg979/vim-visual-multi",
+    config = function()
+      vim.g.VM_theme = "nord"
+    end,
+  },
 }
