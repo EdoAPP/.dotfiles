@@ -3,6 +3,7 @@ return {
   { "folke/noice.nvim", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
   { "echasnovski/mini.indentscope", enabled = false },
+  { "rafamadriz/friendly-snippets", enabled = false },
   -- { "mfussenegger/nvim-dap", enabled = false },
   -- { "rcarriga/nvim-dap-ui", enabled = false },
 }
