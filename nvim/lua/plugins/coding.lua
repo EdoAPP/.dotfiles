@@ -59,7 +59,7 @@ return {
   {
     "mbbill/undotree",
     config = function()
-      vim.keymap.set("n", "<leader>sut", vim.cmd.UndotreeToggle, { desc = "Show Undo Tree" })
+      vim.keymap.set("n", "<leader>uut", vim.cmd.UndotreeToggle, { desc = "Show Undo Tree" })
     end,
   },
   {
