@@ -5,6 +5,7 @@ return {
       if not opts.servers then
         opts.servers = {}
       end
+      opts.inlay_hints = { enabled = false }
       opts.servers.tailwindcss = {
         settings = {
           tailwindCSS = {
