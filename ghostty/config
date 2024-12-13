@@ -9,7 +9,7 @@
 
 # Draw fonts with a thicker stroke, if supported. This is only supported
 # currently on macOS.
-font-thicken = false
+font-thicken = true
 
 font-family = "FiraCode Nerd Font Mono"
 theme = GruvboxDarkHard
