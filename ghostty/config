@@ -1,0 +1,517 @@
+
+
+# Comments start with a `#` and are only valid on their own line.
+# Blank lines are ignored!
+
+#keybind = ctrl+z=close_surface
+#keybind = ctrl+d=new_split:right
+
+
+# Draw fonts with a thicker stroke, if supported. This is only supported
+# currently on macOS.
+font-thicken = false
+
+font-family = "FiraCode Nerd Font Mono"
+theme = GruvboxDarkHard
+
+
+# Background color for the window.
+background = #000000
+
+# Foreground color for the window.
+foreground = #ffffff
+
+# The opacity level (opposite of transparency) of the background. A value of
+# 1 is fully opaque and a value of 0 is fully transparent. A value less than 0
+# or greater than 1 will be clamped to the nearest valid value.
+# 
+# On macOS, background opacity is disabled when the terminal enters native
+# fullscreen. This is because the background becomes gray and it can cause
+# widgets to show through which isn't generally desirable.
+background-opacity = 0.98
+
+# A positive value enables blurring of the background when background-opacity
+# is less than 1. The value is the blur radius to apply. A value of 20
+# is reasonable for a good looking blur. Higher values will cause strange
+# rendering issues as well as performance issues.
+# 
+# This is only supported on macOS.
+background-blur-radius = 20
+
+# The opacity level (opposite of transparency) of an unfocused split.
+# Unfocused splits by default are slightly faded out to make it easier to see
+# which split is focused. To disable this feature, set this value to 1.
+# 
+# A value of 1 is fully opaque and a value of 0 is fully transparent. Because
+# "0" is not useful (it makes the window look very weird), the minimum value
+# is 0.15. This value still looks weird but you can at least see what's going
+# on. A value outside of the range 0.15 to 1 will be clamped to the nearest
+# valid value.
+unfocused-split-opacity = 0.7
+
+# The color to dim the unfocused split. Unfocused splits are dimmed by
+# rendering a semi-transparent rectangle over the split. This sets the color of
+# that rectangle and can be used to carefully control the dimming effect.
+# 
+# This will default to the background color.
+unfocused-split-fill = 
+
+# Key bindings. The format is `trigger=action`. Duplicate triggers will
+# overwrite previously set values. The list of actions is available in
+# the documentation or using the `ghostty +list-actions` command.
+# 
+# Trigger: `+`-separated list of keys and modifiers. Example: `ctrl+a`,
+# `ctrl+shift+b`, `up`. Some notes:
+# 
+#   * modifiers cannot repeat, `ctrl+ctrl+a` is invalid.
+# 
+#   * modifiers and keys can be in any order, `shift+a+ctrl` is *weird*,
+#     but valid.
+# 
+#   * only a single key input is allowed, `ctrl+a+b` is invalid.
+# 
+#   * the key input can be prefixed with `physical:` to specify a
+#     physical key mapping rather than a logical one. A physical key
+#     mapping responds to the hardware keycode and not the keycode
+#     translated by any system keyboard layouts. Example: "ctrl+physical:a"
+# 
+# Valid modifiers are `shift`, `ctrl` (alias: `control`), `alt` (alias: `opt`,
+# `option`), and `super` (alias: `cmd`, `command`). You may use the modifier
+# or the alias. When debugging keybinds, the non-aliased modifier will always
+# be used in output.
+# 
+# Note that the fn or "globe" key on keyboards are not supported as a
+# modifier. This is a limitation of the operating systems and GUI toolkits
+# that Ghostty uses.
+# 
+# You may also specify multiple triggers separated by `>` to require a
+# sequence of triggers to activate the action. For example,
+# `ctrl+a>n=new_window` will only trigger the `new_window` action if the
+# user presses `ctrl+a` followed separately by `n`. In other software, this
+# is sometimes called a leader key, a key chord, a key table, etc. There
+# is no hardcoded limit on the number of parts in a sequence.
+# 
+# Warning: if you define a sequence as a CLI argument to `ghostty`,
+# you probably have to quote the keybind since `>` is a special character
+# in most shells. Example: ghostty --keybind='ctrl+a>n=new_window'
+# 
+# A trigger sequence has some special handling:
+# 
+#   * Ghostty will wait an indefinite amount of time for the next key in
+#     the sequence. There is no way to specify a timeout. The only way to
+#     force the output of a prefix key is to assign another keybind to
+#     specifically output that key (i.e. `ctrl+a>ctrl+a=text:foo`) or
+#     press an unbound key which will send both keys to the program.
+# 
+#   * If a prefix in a sequence is previously bound, the sequence will
+#     override the previous binding. For example, if `ctrl+a` is bound to
+#     `new_window` and `ctrl+a>n` is bound to `new_tab`, pressing `ctrl+a`
+#     will do nothing.
+# 
+#   * Adding to the above, if a previously bound sequence prefix is
+#     used in a new, non-sequence binding, the entire previously bound
+#     sequence will be unbound. For example, if you bind `ctrl+a>n` and
+#     `ctrl+a>t`, and then bind `ctrl+a` directly, both `ctrl+a>n` and
+#     `ctrl+a>t` will become unbound.
+# 
+#   * Trigger sequences are not allowed for `global:` or `all:`-prefixed
+#     triggers. This is a limitation we could remove in the future.
+# 
+# Action is the action to take when the trigger is satisfied. It takes the
+# format `action` or `action:param`. The latter form is only valid if the
+# action requires a parameter.
+# 
+#   * `ignore` - Do nothing, ignore the key input. This can be used to
+#     black hole certain inputs to have no effect.
+# 
+#   * `unbind` - Remove the binding. This makes it so the previous action
+#     is removed, and the key will be sent through to the child command
+#     if it is printable.
+# 
+#   * `csi:text` - Send a CSI sequence. i.e. `csi:A` sends "cursor up".
+# 
+#   * `esc:text` - Send an escape sequence. i.e. `esc:d` deletes to the
+#     end of the word to the right.
+# 
+#   * `text:text` - Send a string. Uses Zig string literal syntax.
+#     i.e. `text:\x15` sends Ctrl-U.
+# 
+#   * All other actions can be found in the documentation or by using the
+#     `ghostty +list-actions` command.
+# 
+# Some notes for the action:
+# 
+#   * The parameter is taken as-is after the `:`. Double quotes or
+#     other mechanisms are included and NOT parsed. If you want to
+#     send a string value that includes spaces, wrap the entire
+#     trigger/action in double quotes. Example: `--keybind="up=csi:A B"`
+# 
+# There are some additional special values that can be specified for
+# keybind:
+# 
+#   * `keybind=clear` will clear all set keybindings. Warning: this
+#     removes ALL keybindings up to this point, including the default
+#     keybindings.
+# 
+# The keybind trigger can be prefixed with some special values to change
+# the behavior of the keybind. These are:
+# 
+#   * `all:` - Make the keybind apply to all terminal surfaces. By default,
+#     keybinds only apply to the focused terminal surface. If this is true,
+#     then the keybind will be sent to all terminal surfaces. This only
+#     applies to actions that are surface-specific. For actions that
+#     are already global (i.e. `quit`), this prefix has no effect.
+# 
+#   * `global:` - Make the keybind global. By default, keybinds only work
+#     within Ghostty and under the right conditions (application focused,
+#     sometimes terminal focused, etc.). If you want a keybind to work
+#     globally across your system (i.e. even when Ghostty is not focused),
+#     specify this prefix. This prefix implies `all:`. Note: this does not
+#     work in all environments; see the additional notes below for more
+#     information.
+# 
+#   * `unconsumed:` - Do not consume the input. By default, a keybind
+#     will consume the input, meaning that the associated encoding (if
+#     any) will not be sent to the running program in the terminal. If
+#     you wish to send the encoded value to the program, specify the
+#     `unconsumed:` prefix before the entire keybind. For example:
+#     `unconsumed:ctrl+a=reload_config`. `global:` and `all:`-prefixed
+#     keybinds will always consume the input regardless of this setting.
+#     Since they are not associated with a specific terminal surface,
+#     they're never encoded.
+# 
+# Keybind trigger are not unique per prefix combination. For example,
+# `ctrl+a` and `global:ctrl+a` are not two separate keybinds. The keybind
+# set later will overwrite the keybind set earlier. In this case, the
+# `global:` keybind will be used.
+# 
+# Multiple prefixes can be specified. For example,
+# `global:unconsumed:ctrl+a=reload_config` will make the keybind global
+# and not consume the input to reload the config.
+# 
+# A note on `global:`: this feature is only supported on macOS. On macOS,
+# this feature requires accessibility permissions to be granted to Ghostty.
+# When a `global:` keybind is specified and Ghostty is launched or reloaded,
+# Ghostty will attempt to request these permissions. If the permissions are
+# not granted, the keybind will not work. On macOS, you can find these
+# permissions in System Preferences -> Privacy & Security -> Accessibility.
+keybind = super+alt+l=goto_split:right
+keybind = super+alt+j=goto_split:bottom
+keybind = super+alt+h=goto_split:left
+keybind = super+alt+k=goto_split:top
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+
+# keybind = shift+left=adjust_selection:left
+# keybind = shift+up=adjust_selection:up
+# keybind = shift+page_up=adjust_selection:page_up
+# keybind = super+ctrl+down=resize_split:down,10
+# keybind = shift+end=adjust_selection:end
+# keybind = super+plus=increase_font_size:1
+# keybind = super+ctrl+left=resize_split:left,10
+# keybind = super+ctrl+up=resize_split:up,10
+# keybind = super+shift+up=jump_to_prompt:-1
+# keybind = shift+right=adjust_selection:right
+# keybind = super+comma=open_config
+# keybind = super+shift+comma=reload_config
+# keybind = super+minus=decrease_font_size:1
+# keybind = shift+page_down=adjust_selection:page_down
+# keybind = ctrl+tab=next_tab
+# keybind = super+a=select_all
+# keybind = alt+shift+equal=equalize_splits
+# keybind = super+shift+enter=toggle_split_zoom
+# keybind = super+ctrl+f=toggle_fullscreen
+# keybind = super+ctrl+right=resize_split:right,10
+# keybind = super+alt+shift+j=write_scrollback_file:open
+# keybind = shift+down=adjust_selection:down
+# keybind = ctrl+shift+tab=previous_tab
+# keybind = super+n=new_window
+# keybind = super+page_down=scroll_page_down
+# keybind = super+alt+shift+w=close_all_windows
+# keybind = super+alt+up=goto_split:top
+# keybind = super+left_bracket=goto_split:previous
+# keybind = super+physical:nine=goto_tab:9
+# keybind = super+right_bracket=goto_split:next
+# keybind = super+end=scroll_to_bottom
+# keybind = super+shift+j=write_scrollback_file:paste
+
+
+# Horizontal window padding. This applies padding between the terminal cells
+# and the left and right window borders. The value is in points, meaning that
+# it will be scaled appropriately for screen DPI.
+# 
+# If this value is set too large, the screen will render nothing, because the
+# grid will be completely squished by the padding. It is up to you as the user
+# to pick a reasonable value. If you pick an unreasonable value, a warning
+# will appear in the logs.
+# 
+# Changing this configuration at runtime will only affect new terminals, i.e.
+# new windows, tabs, etc.
+# 
+# To set a different left and right padding, specify two numerical values
+# separated by a comma. For example, `window-padding-x = 2,4` will set the
+# left padding to 2 and the right padding to 4. If you want to set both
+# paddings to the same value, you can use a single value. For example,
+# `window-padding-x = 2` will set both paddings to 2.
+window-padding-x = 2
+
+# Vertical window padding. This applies padding between the terminal cells and
+# the top and bottom window borders. The value is in points, meaning that it
+# will be scaled appropriately for screen DPI.
+# 
+# If this value is set too large, the screen will render nothing, because the
+# grid will be completely squished by the padding. It is up to you as the user
+# to pick a reasonable value. If you pick an unreasonable value, a warning
+# will appear in the logs.
+# 
+# Changing this configuration at runtime will only affect new terminals,
+# i.e. new windows, tabs, etc.
+# 
+# To set a different top and bottom padding, specify two numerical values
+# separated by a comma. For example, `window-padding-y = 2,4` will set the
+# top padding to 2 and the bottom padding to 4. If you want to set both
+# paddings to the same value, you can use a single value. For example,
+# `window-padding-y = 2` will set both paddings to 2.
+window-padding-y = 2
+
+# The viewport dimensions are usually not perfectly divisible by the cell
+# size. In this case, some extra padding on the end of a column and the bottom
+# of the final row may exist. If this is `true`, then this extra padding
+# is automatically balanced between all four edges to minimize imbalance on
+# one side. If this is `false`, the top left grid cell will always hug the
+# edge with zero padding other than what may be specified with the other
+# `window-padding` options.
+# 
+# If other `window-padding` fields are set and this is `true`, this will still
+# apply. The other padding is applied first and may affect how many grid cells
+# actually exist, and this is applied last in order to balance the padding
+# given a certain viewport size and grid cell size.
+window-padding-balance = false
+# The color of the padding area of the window. Valid values are:
+# 
+# * `background` - The background color specified in `background`.
+# * `extend` - Extend the background color of the nearest grid cell.
+# * `extend-always` - Same as "extend" but always extends without applying
+#   any of the heuristics that disable extending noted below.
+# 
+# The "extend" value will be disabled in certain scenarios. On primary
+# screen applications (i.e. not something like Neovim), the color will not
+# be extended vertically if any of the following are true:
+# 
+# * The nearest row has any cells that have the default background color.
+#   The thinking is that in this case, the default background color looks
+#   fine as a padding color.
+# * The nearest row is a prompt row (requires shell integration). The
+#   thinking here is that prompts often contain powerline glyphs that
+#   do not look good extended.
+# * The nearest row contains a perfect fit powerline character. These
+#   don't look good extended.
+# 
+window-padding-color = extend
+
+# Valid values:
+# 
+#   * `true`
+#   * `false` - windows won't have native decorations, i.e. titlebar and
+#      borders. On macOS this also disables tabs and tab overview.
+# 
+# The "toggle_window_decoration" keybind action can be used to create
+# a keybinding to toggle this setting at runtime.
+# 
+# Changing this configuration in your configuration and reloading will
+# only affect new windows. Existing windows will not be affected.
+# 
+# macOS: To hide the titlebar without removing the native window borders
+#        or rounded corners, use `macos-titlebar-style = hidden` instead.
+window-decoration = true
+
+# The font that will be used for the application's window and tab titles.
+# 
+# This is currently only supported on macOS.
+window-title-font-family = 
+
+# The theme to use for the windows. Valid values:
+# 
+#   * `auto` - Determine the theme based on the configured terminal
+#      background color. This has no effect if the "theme" configuration
+#      has separate light and dark themes. In that case, the behavior
+#      of "auto" is equivalent to "system".
+#   * `system` - Use the system theme.
+#   * `light` - Use the light theme regardless of system theme.
+#   * `dark` - Use the dark theme regardless of system theme.
+#   * `ghostty` - Use the background and foreground colors specified in the
+#     Ghostty configuration. This is only supported on Linux builds with
+#     Adwaita and `gtk-adwaita` enabled.
+# 
+# On macOS, if `macos-titlebar-style` is "tabs", the window theme will be
+# automatically set based on the luminosity of the terminal background color.
+# This only applies to terminal windows. This setting will still apply to
+# non-terminal windows within Ghostty.
+# 
+# This is currently only supported on macOS and Linux.
+window-theme = auto
+
+
+# The colorspace to use for the terminal window. The default is `srgb` but
+# this can also be set to `display-p3` to use the Display P3 colorspace.
+# 
+# Changing this value at runtime will only affect new windows.
+# 
+# This setting is only supported on macOS.
+window-colorspace = srgb
+
+# Whether to enable the macOS window shadow. The default value is true.
+# With some window managers and window transparency settings, you may
+# find false more visually appealing.
+macos-window-shadow = false
+
+
+# The style of the macOS titlebar. Available values are: "native",
+# "transparent", "tabs", and "hidden".
+# 
+# The "native" style uses the native macOS titlebar with zero customization.
+# The titlebar will match your window theme (see `window-theme`).
+# 
+# The "transparent" style is the same as "native" but the titlebar will
+# be transparent and allow your window background color to come through.
+# This makes a more seamless window appearance but looks a little less
+# typical for a macOS application and may not work well with all themes.
+# 
+# The "transparent" style will also update in real-time to dynamic
+# changes to the window background color, i.e. via OSC 11. To make this
+# more aesthetically pleasing, this only happens if the terminal is
+# a window, tab, or split that borders the top of the window. This
+# avoids a disjointed appearance where the titlebar color changes
+# but all the topmost terminals don't match.
+# 
+# The "tabs" style is a completely custom titlebar that integrates the
+# tab bar into the titlebar. This titlebar always matches the background
+# color of the terminal. There are some limitations to this style:
+# On macOS 13 and below, saved window state will not restore tabs correctly.
+# macOS 14 does not have this issue and any other macOS version has not
+# been tested.
+# 
+# The "hidden" style hides the titlebar. Unlike `window-decoration = false`,
+# however, it does not remove the frame from the window or cause it to have
+# squared corners. Changing to or from this option at run-time may affect
+# existing windows in buggy ways. The top titlebar area of the window will
+# continue to drag the window around and you will not be able to use
+# the mouse for terminal events in this space.
+# 
+# The default value is "transparent". This is an opinionated choice
+# but its one I think is the most aesthetically pleasing and works in
+# most cases.
+# 
+# Changing this option at runtime only applies to new windows.
+macos-titlebar-style = tabs
+
+# Whether the proxy icon in the macOS titlebar is visible. The proxy icon
+# is the icon that represents the folder of the current working directory.
+# You can see this very clearly in the macOS built-in Terminal.app
+# titlebar.
+# 
+# The proxy icon is only visible with the native macOS titlebar style.
+# 
+# Valid values are:
+# 
+#   * `visible` - Show the proxy icon.
+#   * `hidden` - Hide the proxy icon.
+# 
+# The default value is `visible`.
+# 
+# This setting can be changed at runtime and will affect all currently
+# open windows but only after their working directory changes again.
+# Therefore, to make this work after changing the setting, you must
+# usually `cd` to a different directory, open a different file in an
+# editor, etc.
+macos-titlebar-proxy-icon = visible
+
+
+# Confirms that a surface should be closed before closing it. This defaults to
+# true. If set to false, surfaces will close without any confirmation.
+confirm-close-surface = true
+
+# Whether or not to quit after the last surface is closed.
+# 
+# This defaults to `false` on macOS since that is standard behavior for
+# a macOS application. On Linux, this defaults to `true` since that is
+# generally expected behavior.
+# 
+# On Linux, if this is `true`, Ghostty can delay quitting fully until a
+# configurable amount of time has passed after the last window is closed.
+# See the documentation of `quit-after-last-window-closed-delay`.
+quit-after-last-window-closed = false
+
+# Controls how long Ghostty will stay running after the last open surface has
+# been closed. This only has an effect if `quit-after-last-window-closed` is
+# also set to `true`.
+# 
+# The minimum value for this configuration is `1s`. Any values lower than
+# this will be clamped to `1s`.
+# 
+# The duration is specified as a series of numbers followed by time units.
+# Whitespace is allowed between numbers and units. Each number and unit will
+# be added together to form the total duration.
+# 
+# The allowed time units are as follows:
+# 
+#   * `y` - 365 SI days, or 8760 hours, or 31536000 seconds. No adjustments
+#     are made for leap years or leap seconds.
+#   * `d` - one SI day, or 86400 seconds.
+#   * `h` - one hour, or 3600 seconds.
+#   * `m` - one minute, or 60 seconds.
+#   * `s` - one second.
+#   * `ms` - one millisecond, or 0.001 second.
+#   * `us` or `µs` - one microsecond, or 0.000001 second.
+#   * `ns` - one nanosecond, or 0.000000001 second.
+# 
+# Examples:
+#   * `1h30m`
+#   * `45s`
+# 
+# Units can be repeated and will be added together. This means that
+# `1h1h` is equivalent to `2h`. This is confusing and should be avoided.
+# A future update may disallow this.
+# 
+# The maximum value is `584y 49w 23h 34m 33s 709ms 551µs 615ns`. Any
+# value larger than this will be clamped to the maximum value.
+# 
+# By default `quit-after-last-window-closed-delay` is unset and
+# Ghostty will quit immediately after the last window is closed if
+# `quit-after-last-window-closed` is `true`.
+# 
+# Only implemented on Linux.
+quit-after-last-window-closed-delay = 
+
+# Whether to enable saving and restoring window state. Window state includes
+# their position, size, tabs, splits, etc. Some window state requires shell
+# integration, such as preserving working directories. See `shell-integration`
+# for more information.
+# 
+# There are three valid values for this configuration:
+# 
+#   * `default` will use the default system behavior. On macOS, this
+#     will only save state if the application is forcibly terminated
+#     or if it is configured systemwide via Settings.app.
+# 
+#   * `never` will never save window state.
+# 
+#   * `always` will always save window state whenever Ghostty is exited.
+# 
+# If you change this value to `never` while Ghostty is not running, the next
+# Ghostty launch will NOT restore the window state.
+# 
+# If you change this value to `default` while Ghostty is not running and the
+# previous exit saved state, the next Ghostty launch will still restore the
+# window state. This is because Ghostty cannot know if the previous exit was
+# due to a forced save or not (macOS doesn't provide this information).
+# 
+# If you change this value so that window state is saved while Ghostty is not
+# running, the previous window state will not be restored because Ghostty only
+# saves state on exit if this is enabled.
+# 
+# The default value is `default`.
+# 
+# This is currently only supported on macOS. This has no effect on Linux.
+window-save-state = default
+
