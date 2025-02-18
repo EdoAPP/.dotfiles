@@ -5,4 +5,3 @@ vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldmethod = "expr"
 
 vim.opt.scrolloff = 8
-vim.opt.mouse = ""
