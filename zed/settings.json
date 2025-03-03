@@ -16,6 +16,7 @@
   "scrollbar": {
     "show": "never"
   },
+  "buffer_font_weight": 500,
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false

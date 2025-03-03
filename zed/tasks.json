@@ -1,5 +1,6 @@
 // Static tasks configuration.
 [
+  // TODO: Find a way to re-open one terminal of the task if it's already in use
   {
     "label": "Lazygit",
     "command": "lazygit",

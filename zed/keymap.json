@@ -62,9 +62,10 @@
       // "g [": "editor::GoToPrevDiagnostic",
       "g r": "editor::FindAllReferences",
       "shift-k": "editor::Hover",
-      "space c a": "editor::ToggleCodeActions",
       // code actions does both source and code actions at the same time. There's no source actions only;
-      // "space c shift-a": "editor::SourceActions",
+      "space c a": "editor::ToggleCodeActions",
+      // TODO: there's not such a thing as line actions it seems, find a way to do it.
+      "space c d": "editor::ToggleCodeActions",
       "space c r ": "editor::Rename",
       "[ x": "editor::SelectLargerSyntaxNode",
       "] x": "editor::SelectSmallerSyntaxNode",
@@ -103,7 +104,8 @@
     "bindings": {
       "g c": "editor::ToggleComments",
       "shift-k": "editor::MoveLineUp",
-      "shift-j": "editor::MoveLineUp"
+      "shift-j": "editor::MoveLineUp",
+      "s a": ["vim::PushAddSurrounds", {}]
     }
   },
   {
