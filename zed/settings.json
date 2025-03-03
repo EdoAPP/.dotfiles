@@ -8,7 +8,7 @@
 // from the command palette or from `Zed` application menu.
 {
   "vim_mode": true,
-  "ui_font_size": 14,
+  // "ui_font_size": 14,
   "relative_line_numbers": true,
   "buffer_font_size": 14,
   "use_autoclose": true,
@@ -36,8 +36,8 @@
   },
   "vertical_scroll_margin": 0,
   "show_call_status_icon": false,
-  // "ui_font_family": "BerkeleyMono Nerd Font Mono",
-  // "buffer_font_family": "BerkeleyMono Nerd Font Mono",
+  "ui_font_family": "JetBrainsMono Nerd Font Mono",
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_line_height": {
     "custom": 1.25
   },
