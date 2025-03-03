@@ -21,30 +21,36 @@
   "buffer_font_size": 14,
   "use_autoclose": true,
   "wrap_guides": [80],
-  "theme": "Gruvbox Dark Hard",
+  "theme": "Base16 Black Metal (Bathory) Dark",
   "scrollbar": {
     "show": "never"
   },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "tab_bar": {
+    "show_tab_bar_buttons": false,
+    "show_nav_history_buttons": false
+  },
+
+  "vertical_scroll_margin": 0,
+  "show_call_status_icon": false,
   // "ui_font_family": "BerkeleyMono Nerd Font Mono",
   // "buffer_font_family": "BerkeleyMono Nerd Font Mono",
   "buffer_line_height": {
     "custom": 1.25
   },
+
   "terminal": {
     "dock": "bottom",
-    "font_size": 13,
-    "font_family": "BerkeleyMono Nerd Font Mono",
     "line_height": {
-      "custom": 1.25
-    },
-    "env": {
-      "GIT_EDITOR": "zed --wait"
+      "custom": 1
     }
+    // "env": {
+    //   "GIT_EDITOR": "zed --wait"
+    // }
   },
-  "features": {
-    "inline_completion_provider": "zed"
-  },
-  "indent_guides": { "enabled": false },
   // "inlay_hints": {
   //   "enabled": true
   // },
@@ -58,10 +64,10 @@
   "soft_wrap": "none",
   "cursor_blink": false,
   "current_line_highlight": "none",
-  "preview_tabs": {
-    "enabled": true,
-    "enable_preview_from_code_navigation": false
-  },
+  // "preview_tabs": {
+  //   "enabled": true,
+  //   "enable_preview_from_code_navigation": false
+  // },
   "lsp": {
     "tailwindcss-language-server": {
       "settings": {
