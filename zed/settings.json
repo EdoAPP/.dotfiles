@@ -45,7 +45,7 @@
   "terminal": {
     "dock": "bottom",
     "line_height": {
-      "custom": 1
+      "custom": 1.25
     }
     // "env": {
     //   "GIT_EDITOR": "zed --wait"
