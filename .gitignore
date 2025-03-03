@@ -1,5 +1,9 @@
 yarn
-zed
+zed/*
+!zed/settings.json
+!zed/keymap.json
+!zed/keymap_backup.json
+
 raycast
 zsh/.zsh_history
 zsh/.zcompdump*

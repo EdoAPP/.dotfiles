@@ -1,0 +1,145 @@
+[
+  {
+    "context": "Editor || Workspace"
+    // "bindings": {
+    //   "space e": "workspace::ToggleLeftDock",
+    //   "shift-h": "pane::ActivatePrevItem",
+    //   "shift-l": "pane::ActivateNextItem",
+    //   "space b d": "pane::CloseActiveItem",
+    //   "space b a": "pane::CloseInactiveItems"
+    // }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-/": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen || vim_mode == normal || ProjectPanel",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock",
+      "shift-h": "pane::ActivatePrevItem",
+      "shift-l": "pane::ActivateNextItem",
+      "space b d": "pane::CloseActiveItem",
+      "space b a": "pane::CloseInactiveItems",
+      "space space": "file_finder::Toggle",
+      // "space /": "workspace::NewSearch"
+      "space /": [
+        "task::Spawn",
+        { "task_name": "Live Grep", "reveal_target": "center" }
+      ],
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "Lazygit", "reveal_target": "center" }
+      ]
+      // ", f b": ["file_finder::Toggle", { "separate_history": true }],
+      // ", r t": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
+      // ", r l": "task::Rerun",
+      // ", r e": [
+      //   "task::Rerun",
+      //   {
+      //     "reevaluate_context": true
+      //   }
+      // ],
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      // "ctrl-w z": "workspace::ToggleZoom",
+      // "ctrl-w t": "terminal_panel::ToggleFocus",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "g shift-i": "editor::GoToImplementation",
+      "g shift-k": "editor::ShowSignatureHelp",
+      "g d": "editor::GoToDefinition",
+      "g y": "editor::GoToTypeDefinition",
+      "g D": "editor::GoToDeclaration",
+      // "g ]": "editor::GoToDiagnostic",
+      // "g [": "editor::GoToPrevDiagnostic",
+      "g r": "editor::FindAllReferences",
+      "shift-k": "editor::Hover",
+      "space c a": "editor::ToggleCodeActions",
+      // code actions does both source and code actions at the same time. There's no source actions only;
+      // "space c shift-a": "editor::SourceActions",
+      "space c r ": "editor::Rename",
+      "[ x": "editor::SelectLargerSyntaxNode",
+      "] x": "editor::SelectSmallerSyntaxNode",
+      // "space w": "workspace::Save",
+      "ctrl+d": [
+        "vim::PageDown",
+        {
+          "center_cursor": true
+        }
+      ],
+      "ctrl+u": [
+        "vim::PageUp",
+        {
+          "center_cursor": true
+        }
+      ],
+      ", g b": "editor::ToggleGitBlame",
+      "-": "pane::RevealInProjectPanel"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !VimCount",
+    "bindings": {
+      "0": ["vim::StartOfLine", { "display_lines": true }],
+      "$": ["vim::EndOfLine", { "display_lines": true }]
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "g c c": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "g c": "editor::ToggleComments",
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-b z": "workspace::ToggleZoom",
+      "ctrl-u": "terminal::Clear"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "bindings": {
+      "space w v": "pane::SplitVertical",
+      "space w s": "pane::SplitHorizontal"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "ctrl-a": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-y": "editor::ConfirmCompletion",
+      "tab": "editor::ComposeCompletion"
+    }
+  }
+]
