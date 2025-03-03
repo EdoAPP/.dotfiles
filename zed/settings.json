@@ -6,14 +6,6 @@
 // To see all of Zed's default settings without changing your
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
-// {
-//   "theme": "Gruvbox Dark Hard",
-//   "vim_mode": true,
-//   "ui_font_size": 16,
-//   "buffer_font_size": 16,
-//   "relative_line_numbers": true
-// }
-
 {
   "vim_mode": true,
   "ui_font_size": 14,
@@ -33,7 +25,15 @@
     "show_tab_bar_buttons": false,
     "show_nav_history_buttons": false
   },
-
+  "collaboration_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "button": false
+  },
+  "project_panel": {
+    "button": false
+  },
   "vertical_scroll_margin": 0,
   "show_call_status_icon": false,
   // "ui_font_family": "BerkeleyMono Nerd Font Mono",
