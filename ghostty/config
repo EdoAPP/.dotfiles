@@ -515,3 +515,5 @@ quit-after-last-window-closed-delay =
 # This is currently only supported on macOS. This has no effect on Linux.
 window-save-state = default
 
+# macos-icon=glass
+macos-icon=chalkboard
