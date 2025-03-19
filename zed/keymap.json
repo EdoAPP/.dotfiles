@@ -104,7 +104,7 @@
     "bindings": {
       "g c": "editor::ToggleComments",
       "shift-k": "editor::MoveLineUp",
-      "shift-j": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown",
       "s a": ["vim::PushAddSurrounds", {}]
     }
   },
