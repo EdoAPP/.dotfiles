@@ -9,6 +9,12 @@ return {
         light = "latte",
         dark = "mocha",
       },
+      styles = {
+        keywords = { "italic" },
+        operators = { "bold" },
+        conditionals = { "italic" },
+        functions = { "italic" }, -- Optional: Make functions italic
+      },
       color_overrides = {
         latte = {
           rosewater = "#c14a4a",
