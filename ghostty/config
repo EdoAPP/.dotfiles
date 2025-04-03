@@ -1,24 +1,26 @@
-
-
+# FONT STUFF HERE
+font-size = 18
 font-thicken = true
 font-thicken-strength = 255
-
+# line height 
+adjust-cell-height = 5
 font-family = "DankMono Nerd Font"
-theme = GruvboxDarkHard
 
+
+# WINDOW & PANE STUFF HERE
+theme = GruvboxDarkHard
 # Background color for the window.
 background = #000000
-
 # Foreground color for the window.
 foreground = #ffffff
-
 background-opacity = 0.98
 macos-window-shadow = false
 macos-titlebar-style = tabs
 
+## OTHER STUFF HERE
 # Confirms that a surface should be closed before closing it. This defaults to
 # true. If set to false, surfaces will close without any confirmation.
 confirm-close-surface = true
-
 # macos-icon=glass
 macos-icon=chalkboard
+
