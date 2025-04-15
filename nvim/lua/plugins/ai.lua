@@ -24,10 +24,15 @@ return {
       },
     },
   },
-  { "giuxtaposition/blink-cmp-copilot", disabled = true },
   {
     "saghen/blink.cmp",
-    optional = true,
-    dependencies = { "giuxtaposition/blink-cmp-copilot", optional = true }, -- add optional to the dependy so we can disable it
+    opts = function(_, opts)
+      -- Remove 'copilot' from default source list
+      opts.sources.default = vim.tbl_filter(function(name)
+        return name ~= "copilot"
+      end, opts.sources.default or {})
+
+      return opts
+    end,
   },
 }
