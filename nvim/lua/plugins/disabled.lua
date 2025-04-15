@@ -3,8 +3,6 @@ return {
   { "folke/noice.nvim", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
   { "nvim-lualine/lualine.nvim", enabled = false },
-  { "giuxtaposition/blink-cmp-copilot", enabled = false },
-
   -- { "mfussenegger/nvim-dap", enabled = false },
   -- { "rcarriga/nvim-dap-ui", enabled = false },
 }
