@@ -21,6 +21,30 @@ return {
       })
     end,
   },
+
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Default options:
+      require("kanagawa").setup({
+        colors = { -- add/modify theme and palette colors
+          palette = {
+            dragonBlack0 = "#000000",
+            dragonBlack1 = "#000000",
+            dragonBlack3 = "#000000",
+            dragonBlack4 = "#000000",
+          },
+        },
+        theme = "dragon", -- Load "kanagawa" theme when 'background' option is set to "dark"
+        background = { -- map the value of 'background' option to a theme
+          dark = "dragon", -- try "ink" !
+          light = "lotus",
+        },
+      })
+    end,
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -415,7 +439,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanso",
+      colorscheme = "kanagawa",
     },
   },
 }
