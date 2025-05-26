@@ -12,3 +12,8 @@ set --export PATH $DOCKER_INSTALL/bin $PATH
 if [ -f '/Users/edo/Downloads/google-cloud-sdk/path.fish.inc' ]
     . '/Users/edo/Downloads/google-cloud-sdk/path.fish.inc'
 end
+
+# Source local secrets if the file exists
+if test -f ~/.config/fish/secrets.fish
+    source ~/.config/fish/secrets.fish
+end

@@ -25,3 +25,5 @@ nvim/nvim
 nvim.bak
 nvim-backup
 github-copilot
+
+fish/secrets.fish
