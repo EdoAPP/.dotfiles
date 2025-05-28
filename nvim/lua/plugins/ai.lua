@@ -35,12 +35,99 @@ return {
   --     return opts
   --   end,
   -- },
-  --   {
-  --   "olimorris/codecompanion.nvim",
-  --   opts = {},
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  -- },
+  {
+    "olimorris/codecompanion.nvim",
+    -- Specify dependencies. plenary is crucial.
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      -- Optional but recommended for better chat rendering
+      "MeanderingProgrammer/render-markdown.nvim",
+    },
+    -- Ensure Treesitter parsers are installed for rendering
+    build = ":TSInstall markdown markdown_inline",
+    opts = {
+      -- ⚠️ IMPORTANT: Configure your AI adapter here! ⚠️
+      -- You MUST set up at least one adapter.
+      -- Find more adapter configurations at:
+      -- https://codecompanion.olimorris.dev/docs/configuration/adapters/
+      adapters = {
+        -- Example for Ollama (ensure Ollama server is running)
+        adapters = {
+          gemini = function()
+            return require("codecompanion.adapters").extend("gemini", {
+              schema = {
+                model = {
+                  default = "gemini-2.5-pro-preview-05-06", -- Attempting to use Gemini 2.5 Pro Preview
+                },
+              },
+            })
+          end,
+        },
+      },
+
+      inline_assist = {
+        -- Ensure Gemini is used for inline assist unless overridden
+        default_options = {
+          strategy = "gemini",
+        },
+      },
+
+      -- Configuration for chat display and behavior
+      chat = {
+        display = {
+          window = {
+            border = "rounded", -- Style of the chat window border
+          },
+        },
+      },
+    },
+    -- Set up keybindings ⌨️
+    keys = {
+      {
+        "<leader>aa",
+        "<cmd>CodeCompanionChat<cr>",
+        desc = "CodeCompanion: Toggle Chat 💬",
+        mode = { "n", "v" }, -- Normal and Visual modes
+      },
+      {
+        "<leader>ac",
+        "<cmd>CodeCompanionActions<cr>",
+        desc = "CodeCompanion: Actions 🛠️",
+        mode = { "n", "v" }, -- Normal and Visual modes
+      },
+      {
+        "<leader>ai",
+        "<cmd>CodeCompanionInlineAssist<cr>",
+        desc = "CodeCompanion: Inline Assist ✨",
+        mode = { "v" }, -- Primarily in Visual mode for selections
+      },
+      {
+        "<leader>ai",
+        "<cmd>CodeCompanionInlineAssist<cr>",
+        desc = "CodeCompanion: Inline Assist ✨",
+        mode = { "n" }, -- Also available in Normal mode
+      },
+    },
+    -- The config function ensures setup is called after loading
+    config = function(_, opts)
+      require("codecompanion").setup(opts)
+    end,
+  },
+
+  -- Ensure render-markdown.nvim is configured (this is important)
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    -- Load it for markdown and codecompanion filetypes
+    ft = { "markdown", "codecompanion" },
+    opts = {},
+    -- Optional: Explicitly configure it to use Treesitter parsers
+    config = function()
+      pcall(function()
+        require("render-markdown").setup({
+          filetypes = { "markdown", "codecompanion" },
+        })
+      end)
+    end,
+  },
 }
