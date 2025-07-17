@@ -1,13 +1,6 @@
 [
   {
     "context": "Editor || Workspace"
-    // "bindings": {
-    //   "space e": "workspace::ToggleLeftDock",
-    //   "shift-h": "pane::ActivatePrevItem",
-    //   "shift-l": "pane::ActivateNextItem",
-    //   "space b d": "pane::CloseActiveItem",
-    //   "space b a": "pane::CloseInactiveItems"
-    // }
   },
   {
     "context": "Workspace",
@@ -19,29 +12,22 @@
     "context": "EmptyPane || SharedScreen || vim_mode == normal || ProjectPanel",
     "bindings": {
       "space e": "workspace::ToggleLeftDock",
-      "shift-h": "pane::ActivatePrevItem",
+      "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
       "space b d": "pane::CloseActiveItem",
+      "space b l": "pane::CloseItemsToTheLeft",
+      "space b r": "pane::CloseItemsToTheRight",
       "space b a": "pane::CloseInactiveItems",
       "space space": "file_finder::Toggle",
-      // "space /": "workspace::NewSearch"
-      "space /": [
-        "task::Spawn",
-        { "task_name": "Live Grep", "reveal_target": "center" }
-      ],
+      "space /": "pane::DeploySearch",
+      // "space /": [
+      //   "task::Spawn",
+      //   { "task_name": "Live Grep", "reveal_target": "center" }
+      // ],
       "space g g": [
         "task::Spawn",
         { "task_name": "Lazygit", "reveal_target": "center" }
       ]
-      // ", f b": ["file_finder::Toggle", { "separate_history": true }],
-      // ", r t": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
-      // ", r l": "task::Rerun",
-      // ", r e": [
-      //   "task::Rerun",
-      //   {
-      //     "reevaluate_context": true
-      //   }
-      // ],
     }
   },
   {
@@ -67,30 +53,19 @@
       // TODO: there's not such a thing as line actions it seems, find a way to do it.
       "space c d": "editor::ToggleCodeActions",
       "space c r ": "editor::Rename",
-      "[ x": "editor::SelectLargerSyntaxNode",
-      "] x": "editor::SelectSmallerSyntaxNode",
       // "space w": "workspace::Save",
       "ctrl+d": [
-        "vim::PageDown",
+        "editor::MovePageDown",
         {
           "center_cursor": true
         }
       ],
       "ctrl+u": [
-        "vim::PageUp",
+        "editor::MovePageUp",
         {
           "center_cursor": true
         }
-      ],
-      ", g b": "editor::ToggleGitBlame",
-      "-": "pane::RevealInProjectPanel"
-    }
-  },
-  {
-    "context": "Editor && vim_mode == normal && !VimWaiting && !VimCount",
-    "bindings": {
-      "0": ["vim::StartOfLine", { "display_lines": true }],
-      "$": ["vim::EndOfLine", { "display_lines": true }]
+      ]
     }
   },
   {

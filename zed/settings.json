@@ -7,19 +7,38 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-latest"
+    },
+    "default_profile": "ask",
+    "profiles": {
+      "sugges-&-write": {
+        "name": "Sugges & Write",
+        "tools": {},
+        "enable_all_context_servers": false,
+        "context_servers": {}
+      }
+    },
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-opus-4-latest"
+    }
+  },
   "git_panel": {
     "dock": "right"
   },
   "vim_mode": true,
   "relative_line_numbers": true,
-  "buffer_font_size": 14,
+  "buffer_font_size": 18,
   "use_autoclose": true,
   "wrap_guides": [80],
   "theme": "Base16 Black Metal (Bathory) Dark",
   "scrollbar": {
     "show": "never"
   },
-  "buffer_font_weight": 500,
+  "buffer_font_weight": 600,
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false
@@ -37,14 +56,15 @@
   "project_panel": {
     "button": false
   },
-  "vertical_scroll_margin": 0,
+  "vertical_scroll_margin": 8,
   "show_call_status_icon": false,
-  "ui_font_family": "JetBrainsMono Nerd Font Mono",
-  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "ui_font_family": "DankMono Nerd Font",
+  "buffer_font_family": "DankMono Nerd Font",
+  // "ui_font_family": "JetBrainsMono Nerd Font Mono",
+  // "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_line_height": {
-    "custom": 1.25
+    "custom": 1.5
   },
-
   "terminal": {
     "dock": "bottom",
     "line_height": {
@@ -54,23 +74,12 @@
     //   "GIT_EDITOR": "zed --wait"
     // }
   },
-  // "inlay_hints": {
-  //   "enabled": true
-  // },
-  // "assistant": {
-  //   "default_model": {
-  //     "provider": "zed.dev",
-  //     "model": "claude-3-5-sonnet-latest"
-  //   },
-  //   "version": "2"
-  // },
+  "edit_predictions": {
+    "mode": "subtle"
+  },
   "soft_wrap": "none",
   "cursor_blink": false,
   "current_line_highlight": "none",
-  // "preview_tabs": {
-  //   "enabled": true,
-  //   "enable_preview_from_code_navigation": false
-  // },
   "lsp": {
     "tailwindcss-language-server": {
       "settings": {
