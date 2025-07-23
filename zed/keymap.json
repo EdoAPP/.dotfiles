@@ -30,9 +30,21 @@
       ]
     }
   },
+
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      // Works when the current selection in the project panel is a directory.
+      // I think this should also work when the current selection is a file
+      // on whichever directory that file is in.
+      "/": "project_panel::NewSearchInDirectory"
+    }
+  },
   {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
+      "space g B": "editor::OpenPermalinkToLine",
+      "space g b": "editor::OpenGitBlameCommit",
       // "ctrl-w z": "workspace::ToggleZoom",
       // "ctrl-w t": "terminal_panel::ToggleFocus",
       "ctrl-h": "workspace::ActivatePaneLeft",
