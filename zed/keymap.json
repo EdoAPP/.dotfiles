@@ -17,13 +17,9 @@
       "space b d": "pane::CloseActiveItem",
       "space b l": "pane::CloseItemsToTheLeft",
       "space b r": "pane::CloseItemsToTheRight",
-      "space b a": "pane::CloseInactiveItems",
+      "space b a": "pane::CloseOtherItems",
       "space space": "file_finder::Toggle",
       "space /": "pane::DeploySearch",
-      // "space /": [
-      //   "task::Spawn",
-      //   { "task_name": "Live Grep", "reveal_target": "center" }
-      // ],
       "space g g": [
         "task::Spawn",
         { "task_name": "Lazygit", "reveal_target": "center" }
@@ -56,8 +52,6 @@
       "g d": "editor::GoToDefinition",
       "g y": "editor::GoToTypeDefinition",
       "g D": "editor::GoToDeclaration",
-      // "g ]": "editor::GoToDiagnostic",
-      // "g [": "editor::GoToPrevDiagnostic",
       "g r": "editor::FindAllReferences",
       "shift-k": "editor::Hover",
       // code actions does both source and code actions at the same time. There's no source actions only;
@@ -65,7 +59,6 @@
       // TODO: there's not such a thing as line actions it seems, find a way to do it.
       "space c d": "editor::ToggleCodeActions",
       "space c r ": "editor::Rename",
-      // "space w": "workspace::Save",
       "ctrl+d": [
         "editor::MovePageDown",
         {
@@ -129,6 +122,14 @@
     "bindings": {
       "ctrl-y": "editor::ConfirmCompletion",
       "tab": "editor::ComposeCompletion"
+    }
+  },
+  {
+    "context": "Pane && vim_mode == visual",
+    "use_key_equivalents": true,
+    "bindings": {
+      "n": "search::SelectNextMatch",
+      "shift-n": "search::SelectPreviousMatch"
     }
   }
 ]

@@ -12,7 +12,7 @@
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     },
-    "default_profile": "ask",
+    "default_profile": "write",
     "profiles": {
       "sugges-&-write": {
         "name": "Sugges & Write",
@@ -34,7 +34,7 @@
   "buffer_font_size": 18,
   "use_autoclose": true,
   "wrap_guides": [80],
-  "theme": "Base16 Black Metal (Bathory) Dark",
+  "theme": "Kanagawa Dragon",
   "diagnostics": {
     "button": true,
     "include_warnings": true,
@@ -92,7 +92,7 @@
   "soft_wrap": "none",
   "cursor_blink": false,
   "cursor_shape": "bar",
-  "current_line_highlight": "none",
+  "current_line_highlight": "all",
   "lsp": {
     "tailwindcss-language-server": {
       "settings": {
