@@ -1,21 +1,23 @@
 // Static tasks configuration.
 [
   // TODO: Find a way to re-open one terminal of the task if it's already in use
+  // {
+  //   "label": "Lazygit",
+  //   "command": "lazygit",
+  //   "hide": "always",
+  //   "allow_concurrent_runs": true
+  // },
   {
     "label": "Lazygit",
     "command": "lazygit",
-    "hide": "always",
-    "use_new_terminal": true,
-    "allow_concurrent_runs": true
-  },
-  {
-    "label": "Live Grep",
-    "command": "zed \"$(tv text)\"",
-    "hide": "always",
-    "allow_concurrent_runs": true,
-    "use_new_terminal": true,
     "shell": {
       "program": "sh"
-    }
+    },
+    "hide": "on_success",
+    "reveal_target": "center",
+    "show_summary": false,
+    "show_command": false,
+    "allow_concurrent_runs": true,
+    "use_new_terminal": true
   }
 ]

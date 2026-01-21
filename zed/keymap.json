@@ -131,5 +131,11 @@
       "n": "search::SelectNextMatch",
       "shift-n": "search::SelectPreviousMatch"
     }
+  },
+  {
+    "context": "(((EmptyPane || SharedScreen) || vim_mode == normal) || ProjectPanel)",
+      "bindings": {
+      "space t": "tab_switcher::ToggleAll"
+    }
   }
 ]

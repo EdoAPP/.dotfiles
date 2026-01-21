@@ -7,66 +7,126 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "vim": {
+    "toggle_relative_line_numbers": true,
+  },
+  "theme_overrides": {
+    "Base16 Black Metal (Bathory) Dark": {
+      "vim.normal.background": "#999999",
+      "vim.normal.foreground": "#000000",
+
+      "vim.insert.background": "#ffffff",
+      "vim.insert.foreground": "#000000",
+
+      "vim.visual.background": "#e3c139",
+      "vim.visual.foreground": "#000000",
+      "vim.visual_line.background": "#e3c139",
+      "vim.visual_line.foreground": "#000000",
+      "vim.visual_block.background": "#e3c139",
+      "vim.visual_block.foreground": "#000000",
+
+      "vim.replace.background": "#cc6666",
+      "vim.replace.foreground": "#000000",
+    },
+  },
+  "file_finder": {
+    "modal_max_width": "medium",
+  },
+  "use_system_window_tabs": false,
+  "centered_layout": {
+    "left_padding": null,
+  },
+  "tabs": {
+    "show_close_button": "hover",
+    "file_icons": false,
+    "git_status": false,
+  },
+  "title_bar": {
+    "show_menus": false,
+    "show_user_menu": true,
+    "show_sign_in": true,
+    "show_onboarding_banner": true,
+    "show_project_items": true,
+    "show_branch_name": true,
+    "show_branch_icon": true,
+  },
+  "search": {
+    "button": true,
+  },
+  "debugger": {
+    "button": true,
+  },
+  "active_pane_modifiers": {},
+  "show_whitespaces": "boundary",
+  "icon_theme": "Colored Zed Icons Theme Dark",
+  "agent_servers": {
+    "claude": {
+      "default_mode": "plan",
+    },
+  },
   "agent": {
     "inline_assistant_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "model": "claude-sonnet-4",
     },
-    "default_profile": "write",
+    "default_profile": "ask",
     "profiles": {
       "sugges-&-write": {
         "name": "Sugges & Write",
         "tools": {},
         "enable_all_context_servers": false,
-        "context_servers": {}
-      }
+        "context_servers": {},
+      },
     },
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    }
+      "model": "claude-sonnet-4",
+    },
   },
   "git_panel": {
-    "dock": "right"
+    "tree_view": true,
+    "sort_by_path": true,
+    "dock": "right",
   },
   "vim_mode": true,
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "buffer_font_size": 18,
   "use_autoclose": true,
   "wrap_guides": [80],
-  "theme": "Kanagawa Dragon",
+  "theme": "Base16 Black Metal (Bathory) Dark",
   "diagnostics": {
     "button": true,
     "include_warnings": true,
     "inline": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
   "scrollbar": {
     "show": "never",
     "diagnostics": "all",
     "axes": {
       "horizontal": false,
-      "vertical": true
-    }
+      "vertical": true,
+    },
   },
   "buffer_font_weight": 600,
   "toolbar": {
     "breadcrumbs": false,
-    "quick_actions": false
+    "quick_actions": false,
   },
   "tab_bar": {
+    "show": true,
     "show_tab_bar_buttons": false,
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
   },
   "collaboration_panel": {
-    "button": false
+    "button": false,
   },
   "outline_panel": {
-    "button": false
+    "button": false,
   },
   "project_panel": {
-    "button": true
+    "button": true,
   },
   "vertical_scroll_margin": 8,
   "show_call_status_icon": false,
@@ -80,29 +140,44 @@
   //   "custom": 1.5
   // },
   "terminal": {
-    "dock": "bottom",
-    "line_height": "comfortable"
-    // "env": {
-    //   "GIT_EDITOR": "zed --wait"
-    // }
+    "line_height": "standard",
+    "font_family": ".ZedMono",
   },
   "edit_predictions": {
-    "mode": "subtle"
+    "mode": "subtle",
   },
   "soft_wrap": "none",
   "cursor_blink": false,
   "cursor_shape": "bar",
   "current_line_highlight": "all",
   "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+      },
+      "enable_lsp_tasks": true,
+    },
     "tailwindcss-language-server": {
       "settings": {
         "experimental": {
           "classRegex": [
             ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-            ["cx\\(((?:[^()]|\\([^()]*\\))*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-          ]
-        }
-      }
-    }
-  }
+            [
+              "cx\\(((?:[^()]|\\([^()]*\\))*)\\)",
+              "(?:'|\"|`)([^']*)(?:'|\"|`)",
+            ],
+          ],
+        },
+      },
+    },
+  },
 }
