@@ -8,7 +8,7 @@ font-family = "DankMono Nerd Font"
 
 
 # WINDOW & PANE STUFF HERE
-theme = GruvboxDarkHard
+theme = Gruvbox Dark Hard
 # Background color for the window.
 background = #000000
 # Foreground color for the window.

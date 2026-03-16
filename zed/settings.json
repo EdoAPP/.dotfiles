@@ -36,6 +36,7 @@
   "centered_layout": {
     "left_padding": null,
   },
+  // "window_decorations": null,
   "tabs": {
     "show_close_button": "hover",
     "file_icons": false,
@@ -60,14 +61,27 @@
   "show_whitespaces": "boundary",
   "icon_theme": "Colored Zed Icons Theme Dark",
   "agent_servers": {
-    "claude": {
-      "default_mode": "plan",
-    },
+    "claude-acp": {
+      "type": "registry",
+      "default_config_options": {
+        "mode": "default"
+      }
+    }
   },
   "agent": {
+    "favorite_models": [
+      {
+        "provider": "google",
+        "model": "gemini-3-pro-preview",
+      },
+      {
+        "provider": "google",
+        "model": "gemini-3-flash-preview",
+      },
+    ],
     "inline_assistant_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4",
+      "provider": "google",
+      "model": "gemini-3-flash-preview",
     },
     "default_profile": "ask",
     "profiles": {
@@ -79,8 +93,8 @@
       },
     },
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4",
+      "provider": "google",
+      "model": "gemini-2.5-flash",
     },
   },
   "git_panel": {
@@ -113,6 +127,14 @@
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false,
+    // "selections_menu": false,
+  },
+  "status_bar": {
+    "active_language_button": false,
+    // "experimental.show": false,
+    "cursor_position_button": false,
+    "active_encoding_button": "disabled",
+    "line_endings_button": false,
   },
   "tab_bar": {
     "show": true,
@@ -126,7 +148,7 @@
     "button": false,
   },
   "project_panel": {
-    "button": true,
+    "button": false,
   },
   "vertical_scroll_margin": 8,
   "show_call_status_icon": false,
@@ -170,11 +192,15 @@
       "settings": {
         "experimental": {
           "classRegex": [
-            ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-            [
-              "cx\\(((?:[^()]|\\([^()]*\\))*)\\)",
-              "(?:'|\"|`)([^']*)(?:'|\"|`)",
-            ],
+            "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.setAttribute\\(['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.add\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.remove\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.toggle\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.contains\\(['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\(\\s*['\"]([^'\"]*)['\"]",
+            "\\.classList\\.replace\\([^,)]+,\\s*['\"]([^'\"]*)['\"]",
           ],
         },
       },

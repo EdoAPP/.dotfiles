@@ -17,3 +17,6 @@ end
 if test -f ~/.config/fish/secrets.fish
     source ~/.config/fish/secrets.fish
 end
+
+# opencode
+fish_add_path /Users/edo/.opencode/bin
