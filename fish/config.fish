@@ -7,6 +7,7 @@ set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 set --export DOCKER_INSTALL "/Applications/Docker.app/Contents/Resources/"
 set --export PATH $DOCKER_INSTALL/bin $PATH
+set -gx EDITOR 'zed --wait'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/edo/Downloads/google-cloud-sdk/path.fish.inc' ]

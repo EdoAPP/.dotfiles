@@ -64,9 +64,9 @@
     "claude-acp": {
       "type": "registry",
       "default_config_options": {
-        "mode": "default"
-      }
-    }
+        "mode": "default",
+      },
+    },
   },
   "agent": {
     "favorite_models": [
@@ -191,6 +191,7 @@
     "tailwindcss-language-server": {
       "settings": {
         "experimental": {
+          "classFunctions": ["cva", "cx"],
           "classRegex": [
             "\\.className\\s*[+]?=\\s*['\"]([^'\"]*)['\"]",
             "\\.setAttributeNS\\(.*,\\s*['\"]class['\"],\\s*['\"]([^'\"]*)['\"]",
