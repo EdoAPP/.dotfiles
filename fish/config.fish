@@ -21,3 +21,7 @@ end
 
 # opencode
 fish_add_path /Users/edo/.opencode/bin
+
+# Added by Antigravity
+fish_add_path /Users/edo/.antigravity/antigravity/bin
+export PATH="$HOME/.local/bin:$PATH"
