@@ -11,6 +11,9 @@ from datetime import datetime, timezone
 REPOSITORY = "git@github.com:EdoAPP/agent-skills.git"
 ORIGINS = {REPOSITORY, "https://github.com/EdoAPP/agent-skills.git"}
 SCOPES = ("codex", "agents", "claude", "cursor")
+# Claude Code reads only ~/.claude/skills, so mirror shared ~/.agents skills there
+# through relative links into ~/.agents/skills.
+MIRRORS = {"agents": ("claude",)}
 
 
 def fingerprint(directory):
@@ -43,6 +46,7 @@ def install(repo, target_home):
         raise ValueError(f"Unexpected repository origin: {origin}")
 
     pending = []
+    claimed = set()
     linked = 0
     for scope in SCOPES:
         source_root = repo / scope / "skills"
@@ -53,18 +57,27 @@ def install(repo, target_home):
                 continue
             if source.is_symlink() or not (source / "SKILL.md").is_file():
                 raise ValueError(f"Invalid skill directory: {source}")
-            destination = target_home / f".{scope}" / "skills" / source.name
-            if destination.is_symlink() and destination.resolve() == source.resolve():
-                linked += 1
-                continue
-            if destination.is_symlink():
-                raise ValueError(f"Conflicting symlink; left untouched: {destination}")
-            if destination.exists() and (
-                not destination.is_dir()
-                or fingerprint(destination) != fingerprint(source)
-            ):
-                raise ValueError(f"Different local files; left untouched: {destination}")
-            pending.append((source, destination))
+            targets = [(target_home / f".{scope}" / "skills" / source.name, source)]
+            for mirror in MIRRORS.get(scope, ()):
+                targets.append((
+                    target_home / f".{mirror}" / "skills" / source.name,
+                    Path("../..") / f".{scope}" / "skills" / source.name,
+                ))
+            for destination, link_target in targets:
+                if destination in claimed:
+                    raise ValueError(f"Skill name collides across scopes: {destination}")
+                claimed.add(destination)
+                if destination.is_symlink() and destination.resolve() == source.resolve():
+                    linked += 1
+                    continue
+                if destination.is_symlink():
+                    raise ValueError(f"Conflicting symlink; left untouched: {destination}")
+                if destination.exists() and (
+                    not destination.is_dir()
+                    or fingerprint(destination) != fingerprint(source)
+                ):
+                    raise ValueError(f"Different local files; left untouched: {destination}")
+                pending.append((link_target, destination))
     if not pending and not linked:
         raise ValueError(f"No skills found in {repo}")
 
@@ -72,7 +85,7 @@ def install(repo, target_home):
         timezone.utc
     ).strftime("%Y%m%dT%H%M%S.%fZ")
     backed_up = 0
-    for source, destination in pending:
+    for link_target, destination in pending:
         destination.parent.mkdir(parents=True, exist_ok=True)
         saved = None
         if destination.exists():
@@ -81,12 +94,12 @@ def install(repo, target_home):
             destination.rename(saved)
             backed_up += 1
         try:
-            destination.symlink_to(source, target_is_directory=True)
+            destination.symlink_to(link_target, target_is_directory=True)
         except OSError:
             if saved is not None:
                 saved.rename(destination)
             raise
-        print(f"Linked {destination} -> {source}")
+        print(f"Linked {destination} -> {link_target}")
     if backed_up:
         print(f"Preserved {backed_up} original directories in {backup}")
     print(f"Ready: {len(pending)} created, {linked} already linked. Checkout: {repo}")
